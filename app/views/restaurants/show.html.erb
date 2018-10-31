@@ -1,8 +1,12 @@
+<%= link_to 'Back', restaurants_path %> |
+<%= link_to 'Add new review', new_restaurant_review_path(@restaurant) %>
+
 <p id="notice"><%= notice %></p>
+<h1>Restaurant <%= @restaurant.name %></h1>
 
 <p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
+  <strong>Category:</strong>
+  <%= @restaurant.category %>
 </p>
 
 <p>
@@ -15,10 +19,21 @@
   <%= @restaurant.phone_number %>
 </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @restaurant.category %>
-</p>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Content</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @restaurant.reviews.each do |review| %>
+        <td><%= review.id %></td>
+        <td><%= review.content %></td>
+        <td><%= review.rating %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
